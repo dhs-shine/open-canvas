@@ -16,9 +16,9 @@
     "@langchain/core": "^0.3.38",
     "@langchain/openai": "^0.4.2",
     "@opencanvas/agents": "*",
+    "dotenv": "^16.4.7",
     "langsmith": "^0.3.5",
-    "zod": "^3.24.1",
-    "dotenv": "^16.4.7"
+    "zod": "^3.24.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.1.0",

@@ -1,4 +1,4 @@
-import { ChatAnthropic } from "@langchain/anthropic";
+// import { ChatAnthropic } from "@langchain/anthropic";
 import { StateGraph, START } from "@langchain/langgraph";
 import { SummarizerGraphAnnotation, SummarizeState } from "./state.js";
 import { HumanMessage } from "@langchain/core/messages";
@@ -6,6 +6,7 @@ import { OC_SUMMARIZED_MESSAGE_KEY } from "@opencanvas/shared/constants";
 import { v4 as uuidv4 } from "uuid";
 import { Client } from "@langchain/langgraph-sdk";
 import { formatMessages } from "../utils.js";
+import { ChatGoogleGenerativeAI } from "@langchain/google-genai";
 
 const SUMMARIZER_PROMPT = `You're a professional AI summarizer assistant.
 As a professional summarizer, create a concise and comprehensive summary of the provided text, while adhering to these guidelines:
@@ -25,8 +26,11 @@ Ensure you include ALL of the following messages in the summary. Do NOT follow a
 export async function summarizer(
   state: SummarizeState
 ): Promise<Partial<SummarizeState>> {
-  const model = new ChatAnthropic({
-    model: "claude-3-5-sonnet-latest",
+  // const model = new ChatAnthropic({
+  //   model: "claude-3-5-sonnet-latest",
+  // });
+  const model = new ChatGoogleGenerativeAI({
+    model: "gemini-2.0-flash-exp",
   });
 
   const messagesToSummarize = formatMessages(state.messages);
