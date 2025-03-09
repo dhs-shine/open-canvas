@@ -4,7 +4,7 @@ import {
   StateGraph,
 } from "@langchain/langgraph";
 import { Client } from "@langchain/langgraph-sdk";
-import { ChatOpenAI } from "@langchain/openai";
+// import { ChatOpenAI } from "@langchain/openai";
 import { z } from "zod";
 import {
   getArtifactContent,
@@ -15,6 +15,7 @@ import {
   TitleGenerationAnnotation,
   TitleGenerationReturnType,
 } from "./state.js";
+import { ChatGoogleGenerativeAI } from "@langchain/google-genai";
 
 export const generateTitle = async (
   state: typeof TitleGenerationAnnotation.State,
@@ -34,8 +35,14 @@ export const generateTitle = async (
     }),
   };
 
-  const model = new ChatOpenAI({
-    model: "gpt-4o-mini",
+  // const model = new ChatOpenAI({
+  //   model: "gpt-4o-mini",
+  //   temperature: 0,
+  // }).bindTools([generateTitleTool], {
+  //   tool_choice: "generate_title",
+  // });
+  const model = new ChatGoogleGenerativeAI({
+    model: "gemini-2.0-flash-exp",
     temperature: 0,
   }).bindTools([generateTitleTool], {
     tool_choice: "generate_title",

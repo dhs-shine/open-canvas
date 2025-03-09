@@ -65,7 +65,8 @@ export const updateHighlightedText = async (
         {
           ...config,
           configurable: {
-            customModelName: "gpt-4o",
+            // customModelName: "gpt-4o",
+            customModelName: "gemini-2.0-flash-exp",
           },
         },
         {

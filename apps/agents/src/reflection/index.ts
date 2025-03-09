@@ -1,4 +1,6 @@
-import { ChatAnthropic } from "@langchain/anthropic";
+// import { ChatAnthropic } from "@langchain/anthropic";
+import { ChatGoogleGenerativeAI } from "@langchain/google-genai";
+
 import {
   type LangGraphRunnableConfig,
   StateGraph,
@@ -47,12 +49,19 @@ export const reflect = async (
     }),
   };
 
-  const model = new ChatAnthropic({
-    model: "claude-3-5-sonnet-20240620",
+  // const model = new ChatAnthropic({
+  //   model: "claude-3-5-sonnet-20240620",
+  //   temperature: 0,
+  // }).bindTools([generateReflectionTool], {
+  //   tool_choice: "generate_reflections",
+  // });
+  const model = new ChatGoogleGenerativeAI({
+    model: "gemini-2.0-flash-exp",
     temperature: 0,
   }).bindTools([generateReflectionTool], {
     tool_choice: "generate_reflections",
   });
+
 
   const currentArtifactContent = state.artifact
     ? getArtifactContent(state.artifact)
